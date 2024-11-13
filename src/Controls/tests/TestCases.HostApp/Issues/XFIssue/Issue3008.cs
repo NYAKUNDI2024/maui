@@ -2,9 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace Maui.Controls.Sample.Issues;
 
-
 [Issue(IssueTracker.Github, 3008, "Setting ListView.ItemSource to null doesn't cause it clear out its contents", PlatformAffected.UWP)]
-
 public class Issue3008 : TestContentPage
 {
 	ListView _listView;
@@ -14,8 +12,6 @@ public class Issue3008 : TestContentPage
 	const string success2 = "Reload1: you should see a grouped and not grouped list view";
 	const string successEmpty2 = "If you see nothing now test has passed";
 	const string successEmpty3 = "List loaded and ItemSource not set: you should see nothing";
-
-
 
 	class MyHeaderViewCell : ViewCell
 	{
@@ -28,7 +24,6 @@ public class Issue3008 : TestContentPage
 		}
 	}
 
-
 	class GroupedItem : List<Item>
 	{
 		public GroupedItem()
@@ -38,18 +33,14 @@ public class Issue3008 : TestContentPage
 		public string Name { get; set; }
 	}
 
-
-
 	class Item
 	{
-
 	}
 
 	void LoadData()
 	{
 		_listViewIsGrouped.ItemsSource = new ObservableCollection<GroupedItem>(Enumerable.Range(0, 3).Select(x => new GroupedItem() { Name = $"Group {x}" }));
 		_listView.ItemsSource = new ObservableCollection<Item>(Enumerable.Range(0, 13).Select(x => new Item()));
-
 	}
 
 	void ReloadListViews()
@@ -65,10 +56,14 @@ public class Issue3008 : TestContentPage
 		{
 			ItemTemplate = new DataTemplate(() =>
 			{
-				Label nameLabel = new Label() { Text = "Not Grouped Item" };
+				Label nameLabel = new Label
+				{
+					Text = "Not Grouped Item",
+					AutomationId = "NotGroupedItemLabel"
+				};
 				var cell = new ViewCell
 				{
-					View = nameLabel,
+					View = nameLabel
 				};
 				return cell;
 			}),
@@ -79,10 +74,14 @@ public class Issue3008 : TestContentPage
 			GroupHeaderTemplate = new DataTemplate(typeof(MyHeaderViewCell)),
 			ItemTemplate = new DataTemplate(() =>
 			{
-				Label nameLabel = new Label() { Text = "Grouped Item" };
+				Label nameLabel = new Label
+				{
+					Text = "Grouped Item",
+					AutomationId = "GroupedItemLabel"
+				};
 				var cell = new ViewCell
 				{
-					View = nameLabel,
+					View = nameLabel
 				};
 				return cell;
 			}),
@@ -105,6 +104,7 @@ public class Issue3008 : TestContentPage
 				new Button()
 				{
 					Text = "Click Until Success",
+					AutomationId = "ClickUntilSuccess",
 					Command = new Command(() =>
 					{
 						if(clickCount == 0)
