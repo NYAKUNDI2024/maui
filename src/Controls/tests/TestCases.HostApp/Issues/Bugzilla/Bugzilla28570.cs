@@ -56,7 +56,7 @@ namespace Maui.Controls.Sample.Issues
 			var targetLabel = new Label
 			{
 				Text = "Find Me",
-				AutomationId = "28570Target"
+				AutomationId = "28570Target",
 			};
 
 #pragma warning disable CS0612 // Type or member is obsolete
@@ -105,6 +105,7 @@ namespace Maui.Controls.Sample.Issues
 					makeBig,
 					header,
 					ScrollView,
+					
 				}
 			};
 		}
