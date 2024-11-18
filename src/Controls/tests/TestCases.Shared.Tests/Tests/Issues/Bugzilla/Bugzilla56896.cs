@@ -18,10 +18,7 @@ namespace Microsoft.Maui.TestCases.Tests.Issues
 		public override string Issue => "ListViews for lists with many elements regressed in performance on iOS";
 
 		[Test]
-		[Category(UITestCategories.ListView)]
-		[Category(UITestCategories.Compatibility)]
-		[FailsOnIOSWhenRunningOnXamarinUITest]
-		[FailsOnMacWhenRunningOnXamarinUITest]
+		[Category(UITestCategories.ListView)]yy
 		public void ListViewsWithManyElementsPerformanceCheck()
 		{
 			App.WaitForElement(InstructionsId);

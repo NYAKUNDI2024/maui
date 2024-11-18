@@ -15,7 +15,6 @@ public class Bugzilla51825 : _IssuesUITest
 	public override string Issue => "[iOS] Korean input in SearchBar doesn't work";
 
 	[Test]
-	[FailsOnIOSWhenRunningOnXamarinUITest]
 	public void Bugzilla51825Test()
 	{
 		App.WaitForElement("Bugzilla51825SearchBar");
@@ -26,9 +25,7 @@ public class Bugzilla51825 : _IssuesUITest
 
 		// Windows App Driver and the Search Bar are a bit buggy
 		// It randomly doesn't enter the first letter
-#if !WINDOWS
 		ClassicAssert.AreEqual("Hello", label.ReadText());
-#endif
 
 		App.Tap("Bugzilla51825Button");
 
